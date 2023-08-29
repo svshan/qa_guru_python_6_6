@@ -12,6 +12,7 @@ def test_dark_theme_by_time():
         is_dark_theme = True
     assert is_dark_theme is True
 
+
 def test_dark_theme_by_time_and_user_choice():
     """
     Протестируйте правильность переключения темной темы на сайте
@@ -32,6 +33,7 @@ def test_dark_theme_by_time_and_user_choice():
     elif current_time >= time(hour=22) or current_time <= time(hour=6):
         is_dark_theme = True
     assert is_dark_theme is True
+
 
 def test_find_suitable_user():
     """
@@ -63,6 +65,7 @@ def test_find_suitable_user():
         {"name": "Maria", "age": 18},
     ]
 
+
 # Сделайте функцию, которая будет печатать
 # читаемое имя переданной ей функции и значений аргументов.
 # Вызовите ее внутри функций, описанных ниже
@@ -73,20 +76,27 @@ def test_find_suitable_user():
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
 
+
+def print_function_name_and_arguments(func, *args):
+    return func.__name__.replace('_', ' ').title() + f' [{", ".join(args)}]'
+
+
 def test_readable_function():
     open_browser(browser_name="Chrome")
     go_to_companyname_homepage(page_url="https://companyname.com")
     find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
+
 def open_browser(browser_name):
-    actual_result = open_browser.__name__.replace('_', ' ').title() + f' [{browser_name}]'
+    actual_result = print_function_name_and_arguments(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
+
 def go_to_companyname_homepage(page_url):
-    actual_result = go_to_companyname_homepage.__name__.replace('_', ' ').title() + f' [{page_url}]'
+    actual_result = print_function_name_and_arguments(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
+
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = find_registration_button_on_login_page.__name__.replace('_', ' ').title() \
-                    + f' [{page_url}, {button_text}]'
+    actual_result = print_function_name_and_arguments(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
