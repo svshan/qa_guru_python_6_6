@@ -78,7 +78,9 @@ def test_find_suitable_user():
 
 
 def print_function_name_and_arguments(func, *args):
-    return func.__name__.replace('_', ' ').title() + f' [{", ".join(args)}]'
+    new_function = func.__name__.replace('_', ' ').title() + f' [{", ".join(args)}]'
+    print(new_function)
+    return new_function
 
 
 def test_readable_function():
